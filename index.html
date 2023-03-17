@@ -1,0 +1,60 @@
+<html lang="eng">
+<head>
+  <title>Warzone 2 to Aimlabs sense converter</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div
+  x-data="{
+    ads: '',
+    hipFire: '',
+    aimLabsAds: 0,
+    aimLabsHipFire: 0,
+    init() {
+      const aimLabsMaxAds = 2.747;
+      const aimLabsMaxHipFire = 100;
+      const warzoneMaxAds = 4;
+      const warzoneMaxHipFire = 20;
+
+      $watch('ads', (value) => {
+        if (!value) return;
+
+        this.aimLabsAds = value * aimLabsMaxAds / warzoneMaxAds;
+      })
+
+      $watch('hipFire', (value) => {
+        if (!value) return;
+
+        this.aimLabsHipFire = value * aimLabsMaxHipFire / warzoneMaxHipFire;
+      })
+    }
+  }"
+  class="flex flex-col items-center justify-center h-full w-full gap-4"
+>
+  <div class="flex flex-col gap-8">
+    <h3 class="text-2xl">Warzone 2 to Aimlabs sense converter</h3>
+
+    <div class="rounded-md border border-gray-600 p-2">
+      <h4 class="text-xl text-gray-600">ADS</h4>
+      <div class="flex flex-col mt-4">
+        <label for="ads">ADS sense:</label>
+        <input x-model="ads" placeholder="Your ads sense in-game" type="number" id="ads" class="border-2 border-gray-300 p-2 rounded-lg" />
+
+        <p class="mt-2 text-sm bg-gray-100 text-gray-600 p-1 rounded-md"><span>Aimlabs Sense:</span> <span x-text="aimLabsAds"></span></p>
+      </div>
+    </div>
+
+    <div class="rounded-md border border-gray-600 p-2">
+      <h4 class="text-xl text-gray-600">Hip-fire</h4>
+      <div class="flex flex-col mt-4">
+        <label for="ads">Hip-fire sense:</label>
+        <input x-model="hipFire" placeholder="Your hip-fire sense in-game" type="number" id="hipfire" class="border-2 border-gray-300 p-2 rounded-lg" />
+
+        <p class="mt-2 text-sm bg-gray-100 text-gray-600 p-1 rounded-md"><span>Aimlabs Sense:</span> <span x-text="aimLabsHipFire"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
